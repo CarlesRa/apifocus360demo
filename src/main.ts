@@ -6,6 +6,7 @@ import { ContactsModule } from './contacts/contacts.module';
 
 async function bootstrap() {
 
+//main
 	const app = await NestFactory.create(ContactsModule);
 
 	const options = new DocumentBuilder()
