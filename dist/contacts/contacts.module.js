@@ -14,12 +14,33 @@ const typeorm_1 = require("@nestjs/typeorm");
 const email_controller_1 = require("./controllers/email/email.controller");
 const email_service_1 = require("./services/email/email.service");
 const contact_entity_1 = require("./model/contacts/contact.entity");
+const mailer_1 = require("@nestjs-modules/mailer");
 let ContactsModule = class ContactsModule {
 };
 ContactsModule = __decorate([
     common_1.Module({
         imports: [
-            typeorm_1.TypeOrmModule.forFeature([contact_entity_1.Contact])
+            typeorm_1.TypeOrmModule.forFeature([contact_entity_1.Contact]),
+            typeorm_1.TypeOrmModule.forRoot({
+                type: 'sqlite',
+                database: 'db',
+                entities: [__dirname + '/**/*.entity{.ts,.js}'],
+                synchronize: true
+            }),
+            mailer_1.MailerModule.forRoot({
+                transport: {
+                    host: 'smtp.gmail.com',
+                    prot: 587,
+                    secure: false,
+                    auth: {
+                        user: "focus360.demo@gmail.com",
+                        pass: "*Focus360",
+                    },
+                },
+                defaults: {
+                    from: '"nest-modules" <modules@nestjs.com>',
+                }
+            }),
         ],
         providers: [contacts_service_1.ContactsService, email_service_1.EmailService],
         controllers: [contacts_controller_1.ContactsController, email_controller_1.EmailController]

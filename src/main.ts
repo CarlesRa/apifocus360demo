@@ -1,11 +1,12 @@
 import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder } from '@nestjs/swagger/dist/document-builder';
 import { SwaggerModule } from '@nestjs/swagger/dist/swagger-module';
-import { AppModule } from './app.module';
+import { ContactsModule } from './contacts/contacts.module';
+
 
 async function bootstrap() {
 
-	const app = await NestFactory.create(AppModule);
+	const app = await NestFactory.create(ContactsModule);
 
 	const options = new DocumentBuilder()
     .setTitle('Focus-Demo')

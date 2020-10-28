@@ -3,9 +3,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const core_1 = require("@nestjs/core");
 const document_builder_1 = require("@nestjs/swagger/dist/document-builder");
 const swagger_module_1 = require("@nestjs/swagger/dist/swagger-module");
-const app_module_1 = require("./app.module");
+const contacts_module_1 = require("./contacts/contacts.module");
 async function bootstrap() {
-    const app = await core_1.NestFactory.create(app_module_1.AppModule);
+    const app = await core_1.NestFactory.create(contacts_module_1.ContactsModule);
     const options = new document_builder_1.DocumentBuilder()
         .setTitle('Focus-Demo')
         .setDescription('Api para demo en Focus360º')
